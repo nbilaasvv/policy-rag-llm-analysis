@@ -29,6 +29,16 @@ The goal of this project is to illustrate how **AI/ML models, vector databases, 
 - **LLM APIs**
 
 ---
+## Requirements
+
+This project was developed using **Python 3.10+**.
+
+Install all dependencies using:
+
+```bash
+pip install -r requirements.txt
+```
+---
 
 ## Pipeline Architecture
 
@@ -67,11 +77,4 @@ This project demonstrates how **LLM-based retrieval systems** can support:
 - Add **MLOps pipeline for monitoring and deployment**
 
 ---
-## Requirements
 
-This project was developed using **Python 3.10+**.
-
-Install all dependencies using:
-
-```bash
-pip install -r requirements.txt
