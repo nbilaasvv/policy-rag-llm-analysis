@@ -10,23 +10,21 @@ The goal of this project is to illustrate how **AI/ML models, vector databases, 
 
 ## Key Features
 
-- End-to-end AI pipeline for document analysis
-- Semantic search using **FAISS vector database**
-- Text embeddings using **Sentence Transformers**
-- Prompt engineering for context-aware LLM responses
-- Automated **thematic analysis generation**
+- **End-to-End RAG Pipeline:** Context-aware document analysis using LangChain.
+- **Advanced Semantic Search:** High-performance retrieval via **FAISS** vector indexing.
+- **Policy Network Visualization:** Mapping relationship between policy themes using **NetworkX**.
+- **Metadata-Driven Retrieval:** Structured chunking to maintain document hierarchy.
+- **Bilingual Analysis:** Capability to process and analyze Indonesian policy contexts.
 
 ---
 
 ## Tech Stack
 
-- **Python**
-- **LangChain**
-- **Sentence Transformers**
-- **FAISS**
-- **pdfplumber**
-- **Pandas**
-- **LLM APIs**
+- **Languages:** Python (Pandas, NumPy)
+- **AI/LLM Frameworks:** LangChain, Google Gemini API / HuggingFace
+- **Embeddings & Vectors:** Sentence Transformers, FAISS
+- **Visualization:** NetworkX, Matplotlib, Seaborn
+- **Document Processing:** pdfplumber
 
 ---
 ## Requirements
