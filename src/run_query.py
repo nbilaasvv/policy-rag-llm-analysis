@@ -1,3 +1,4 @@
+"""
 RAG query execution script.
 
 This script runs one or multiple user queries through the
