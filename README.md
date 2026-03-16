@@ -87,24 +87,30 @@ experimental pipeline implemented in the notebook.
 ## How to Run
 
 **Clone the repository**
+
 git clone https://github.com/nbilaasvv/policy-rag-llm-analysis
+
 cd policy-rag-llm-analysis
 
 
 **Install dependencies**
+
 pip install -r requirements.txt
 
 **Configure environment variables**
 
 Create a `.env` file:
+
 GOOGLE_API_KEY=your_api_key_here
 
 
 **Build the vector database**
+
 python src/build_database.py
 
 
 **Run RAG queries**
+
 python main.py
 
 ---
