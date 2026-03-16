@@ -10,8 +10,11 @@ Handles:
 import logging
 from langchain_community.vectorstores import FAISS
 
-#Create FAISS vectorstore from document chunks
+
 def create_vectorstore(documents, embeddings):
+    """
+    Create FAISS vectorstore from document chunks.
+    """
 
     logging.info("Creating FAISS vectorstore...")
 
@@ -22,16 +25,20 @@ def create_vectorstore(documents, embeddings):
     return vectorstore
 
 
-#Save FAISS vectorstore locally
 def save_vectorstore(vectorstore, path):
+    """
+    Save FAISS vectorstore locally.
+    """
 
     vectorstore.save_local(path)
 
     logging.info("Vectorstore saved at %s", path)
 
 
-#Load FAISS vectorstore from disk
 def load_vectorstore(path, embeddings):
+    """
+    Load FAISS vectorstore from disk.
+    """
 
     logging.info("Loading vectorstore from %s", path)
 
@@ -43,11 +50,14 @@ def load_vectorstore(path, embeddings):
 
     return vectorstore
 
-#Create retriever for similarity search
-def get_retriever(vectorstore, k=5):
+
+def create_retriever(vectorstore, k=5):
+    """
+    Create retriever for similarity search.
+    """
 
     logging.info("Retriever created with top %s results", k)
 
     return vectorstore.as_retriever(
-      search_kwargs={"k": k}
+        search_kwargs={"k": k}
     )
