@@ -6,28 +6,16 @@ This module handles:
 - retrieving relevant document chunks
 - building contextual prompts
 - generating responses using a Large Language Model (LLM)
-
-The module acts as the core component of the Retrieval-Augmented
-Generation (RAG) pipeline, enabling semantic search and
-context-aware policy analysis from embedded documents.
 """
 
 import os
 import logging
-import re
-import pandas as pd
-import pdfplumber
-
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_core.documents import Document
+from dotenv import load_dotenv
 
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
-
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-import os
-from dotenv import load_dotenv
 
 # load environment variables
 load_dotenv()
@@ -37,6 +25,7 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if not GOOGLE_API_KEY:
     raise ValueError("GOOGLE_API_KEY not found in environment variables")
 
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
@@ -45,6 +34,7 @@ logging.basicConfig(
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 VECTORSTORE_PATH = "vectorstore_reformasi_2045"
 LLM_MODEL = "gemini-2.5-flash"
+
 
 def load_vectorstore():
     """
@@ -71,7 +61,8 @@ def load_vectorstore():
 
     return vectorstore, retriever
 
-    def load_llm():
+
+def load_llm():
     """
     Initialize Gemini LLM model.
     """
@@ -85,7 +76,8 @@ def load_vectorstore():
 
     return llm
 
-    if __name__ == "__main__":
+
+if __name__ == "__main__":
 
     print("Testing configuration...")
 
