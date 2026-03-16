@@ -1,21 +1,17 @@
 """
 RAG query execution script.
 
-This script runs one or multiple user queries through the
-Retrieval-Augmented Generation (RAG) pipeline.
-
-It performs the following steps:
-- loads the vector database and retriever
-- initializes the LLM model
-- sends queries to the RAG query engine
-- prints the generated analytical responses
-
-This file acts as the main entry point for testing
-semantic queries over embedded policy documents.
+Runs semantic queries over the policy RAG system.
 """
 
-from rag_query_engine import load_vectorstore, run_rag_query
-from llm_loader import load_llm
+import logging
+from rag_query_engine import load_vectorstore, load_llm, run_rag_query
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 
 def main():
