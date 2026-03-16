@@ -19,7 +19,7 @@ def create_splitter():
     )
 
 #Split text into chunks with metadata
-def create_chunks(text: str, label: str):
+chunks = create_chunks(text, "policy_source")
     splitter = create_splitter()
     chunks = splitter.split_text(text)
     documents = [
