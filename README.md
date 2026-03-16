@@ -74,5 +74,43 @@ This project demonstrates how **LLM-based retrieval systems** can support:
 - Implement **LLM fine-tuning for domain-specific policy analysis**
 - Add **MLOps pipeline for monitoring and deployment**
 
+## Experimental Notebook
+
+The initial development and experimentation of the RAG pipeline
+was conducted in:
+
+notebooks/eksperimen.ipynb
+
+The modules in `src/` represent a modularized version of the
+experimental pipeline implemented in the notebook.
+
+## How to Run
+
+1. Clone the repository
+
+git clone https://github.com/nbilaasvv/policy-rag-llm-analysis
+cd policy-rag-llm-analysis
+
+
+2. Install dependencies
+
+pip install -r requirements.txt
+
+
+3. Configure environment variables
+
+Create a `.env` file:
+
+GOOGLE_API_KEY=your_api_key_here
+
+
+4. Build the vector database
+
+python src/build_database.py
+
+
+5. Run RAG queries
+
+python main.py
 ---
 
