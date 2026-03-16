@@ -15,6 +15,7 @@ import pandas as pd
 import pdfplumber
 from PyPDF2 import PdfReader
 
+
 def extract_pdf_text(file_path: str) -> str:
 
     if not os.path.exists(file_path):
@@ -23,7 +24,6 @@ def extract_pdf_text(file_path: str) -> str:
 
     text = ""
 
-    # extract text using pdfplumber
     try:
         with pdfplumber.open(file_path) as pdf:
             for page in pdf.pages:
@@ -34,9 +34,8 @@ def extract_pdf_text(file_path: str) -> str:
             return text
 
     except Exception as e:
-        logging.warning("pdfplumber failed for %s: %s", file_path, e)
+        logging.warning("pdfplumber failed: %s", e)
 
-    # Fallback using PyPDF2
     try:
         reader = PdfReader(file_path)
         for page in reader.pages:
@@ -47,43 +46,43 @@ def extract_pdf_text(file_path: str) -> str:
             return text
 
     except Exception as e:
-        logging.warning("PyPDF2 extraction failed for %s: %s", file_path, e)
+        logging.warning("PyPDF2 failed: %s", e)
 
-    logging.error("Text extraction failed: %s", file_path)
+    logging.error("Text extraction failed")
     return ""
 
-# TEXT CLEANING FUNCTION
+
 def clean_text(text: str) -> str:
+
     if not text:
         return ""
 
-    # remove page numbers
     text = re.sub(r'\n\d+\n', '\n', text)
-
-    # remove non-ASCII or unusual characters
-    text = re.sub(r'[^\x00-\x7F]+', ' ', text)
-
-    # normalize whitespace
     text = re.sub(r'\s+', ' ', text)
 
     return text.strip()
 
 
-# Process CSV file containing text data
-
 def process_csv(file_path: str):
 
     df = pd.read_csv(file_path)
 
-    print("Available columns:", df.columns.tolist())
+    logging.info("Available columns: %s", df.columns.tolist())
 
-    if "text" not in df.columns:
-        raise ValueError("Column 'text' not found.")
+    possible_columns = ["text", "content", "article", "body"]
 
-    df = df[["text"]].dropna().drop_duplicates()
+    text_column = None
 
-    print(f"Number of articles after cleaning: {len(df)}")
+    for col in possible_columns:
+        if col in df.columns:
+            text_column = col
+            break
 
-    combined_text = " ".join(df["text"].astype(str).tolist())
+    if text_column is None:
+        raise ValueError("No valid text column found in CSV")
 
-    return clean_text(combined_text)
+    df = df[[text_column]].dropna().drop_duplicates()
+
+    logging.info("Number of articles after cleaning: %s", len(df))
+
+    return df[text_column].astype(str).tolist()
